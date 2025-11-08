@@ -8,8 +8,11 @@ export default defineConfig(({ mode }) => ({
   server: {
     host: "0.0.0.0",
     port: 8080,
-
-    // Remove the proxy section entirely
+    allowedHosts: true, // ✅ allow ALL hosts (shortcut)
+  },
+  preview: {
+    port: 8080,
+    allowedHosts: true, // ✅ allow all for deployed preview too
   },
   plugins: [
     react(), 
