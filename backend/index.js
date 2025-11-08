@@ -6,7 +6,9 @@ const app = express();
 const PORT = process.env.PORT || 8081;
 
 // Basic CORS
-app.use(cors());
+app.use(cors({
+  origin: "https://pixelmanga1.onrender.com",
+}));
 
 // Proxy middleware - handle all /api routes
 app.use("/api", async (req, res) => {
