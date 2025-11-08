@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 240 33% 6%;
+    --foreground: 0 0% 86%;
+
+    --card: 240 30% 10%;
+    --card-foreground: 0 0% 86%;
+
+    --popover: 240 35% 8%;
+    --popover-foreground: 0 0% 86%;
+
+    --primary: 167 100% 50%;
+    --primary-foreground: 240 33% 6%;
+
+    --secondary: 342 100% 62%;
+    --secondary-foreground: 240 33% 6%;
+
+    --muted: 240 20% 20%;
+    --muted-foreground: 0 0% 60%;
+
+    --accent: 60 100% 50%;
+    --accent-foreground: 240 33% 6%;
+
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 86%;
+
+    --border: 167 100% 50%;
+    --input: 240 30% 15%;
+    --ring: 167 100% 50%;
+
+    --radius: 0rem;
+    
+    --pixel-glow: 0 0 8px currentColor, 0 0 16px currentColor;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 240 33% 6%;
+    --foreground: 0 0% 86%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-pixel overflow-x-hidden;
+    image-rendering: pixelated;
+  }
+  
+  /* CRT Scanlines Effect */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.15),
+      rgba(0, 0, 0, 0.15) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    pointer-events: none;
+    z-index: 9999;
+  }
+}
+
+@layer utilities {
+  .pixel-glow {
+    text-shadow: var(--pixel-glow);
+  }
+  
+  .pixel-border {
+    box-shadow: 
+      0 0 0 2px hsl(var(--border)),
+      0 0 16px hsl(var(--border) / 0.5);
+  }
+  
+  .rgb-glow {
+    animation: rgb-shift 3s ease-in-out infinite;
+  }
+  
+  @keyframes rgb-shift {
+    0%, 100% {
+      text-shadow: 
+        -2px 0 hsl(167 100% 50%),
+        2px 0 hsl(342 100% 62%),
+        0 0 12px currentColor;
+    }
+    33% {
+      text-shadow: 
+        2px 0 hsl(167 100% 50%),
+        -2px 0 hsl(60 100% 50%),
+        0 0 12px currentColor;
+    }
+    66% {
+      text-shadow: 
+        0 -2px hsl(342 100% 62%),
+        0 2px hsl(60 100% 50%),
+        0 0 12px currentColor;
+    }
+  }
+  
+  @keyframes pixel-pulse {
+    0%, 100% {
+      box-shadow: 
+        0 0 0 2px hsl(var(--border)),
+        0 0 16px hsl(var(--border) / 0.5);
+    }
+    50% {
+      box-shadow: 
+        0 0 0 3px hsl(var(--border)),
+        0 0 24px hsl(var(--border) / 0.8);
+    }
+  }
+  
+  .pixel-pulse {
+    animation: pixel-pulse 2s ease-in-out infinite;
+  }
+}
