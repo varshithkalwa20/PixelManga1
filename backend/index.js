@@ -13,7 +13,7 @@ app.use(cors({
 // Proxy middleware - handle all /api routes
 app.use("/api", async (req, res) => {
   try {
-    const mangadexUrl = `https://api.mangadex.dev${req.path}${req._parsedUrl.search || ''}`;
+    const mangadexUrl = `https://api.mangadex.org${req.path}${req._parsedUrl.search || ''}`;
     
     console.log(`Proxying: ${req.method} ${mangadexUrl}`);
     
