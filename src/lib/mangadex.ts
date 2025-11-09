@@ -238,7 +238,7 @@ function parseManga(data: any): Manga {
   const coverRel = relationships.find((rel: any) => rel.type === 'cover_art');
   const coverFileName = coverRel?.attributes?.fileName;
   const coverUrl = coverFileName
-    ? `https://uploads.mangadex.org/covers/${data.id}/${coverFileName}.256.jpg`
+    ? `https://uploads.mangadex.org/covers/${data.id}/${coverFileName}`
     : '/placeholder.svg';
 
   const authorRel = relationships.find((rel: any) => rel.type === 'author');
